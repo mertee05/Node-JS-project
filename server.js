@@ -26,6 +26,23 @@ app.get("/temp", (req, res) => {
     });
 });
 
+app.get("/wind", (req, res) => {
+  axios
+    .get(apiURL)
+    .then((response) => {
+      const weatherData = response.data;
+      res.send(
+        `Current weather in ${CITY}:\n\n - Temperature: ${weatherData.current.temp_f}°F  `
+      );
+    })
+    .catch((error) => {
+      console.error(
+        "Eror fetching weather data:",
+        error.repsonse.data.error.message
+      );
+    });
+});
+
 app.listen(port, () => {
   console.log("server is running...");
 });
