@@ -8,8 +8,19 @@ const apiURL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${CIT
 
 const app = express();
 const port = 5500;
+app.listen(port, () => {
+  console.log("server is running...");
+});
 
-app.get("/temp", (req, res) => {
+app.use(express.json());
+
+app.get("/home", (req, res) => {
+  res.sendFile("index.html", { root: __dirname });
+});
+app.post("/city", (req, res) => {
+  console.log(req.body);
+});
+app.get("/city", (req, res) => {
   axios
     .get(apiURL)
     .then((response) => {
@@ -24,8 +35,4 @@ app.get("/temp", (req, res) => {
         error.repsonse.data.error.message
       );
     });
-});
-
-app.listen(port, () => {
-  console.log("server is running...");
 });

@@ -8,6 +8,52 @@
     <input type="text" id="data" />
     <button id="fetch-button">Gimme Weather~</button>
     <text id="weather-report"></text>
-    <script src="./javascript.js" type="module"></script>
+    <!-- <script src="./javascript.js" type="module"></script> -->
   </body>
+  <script>
+    let inputData = document.getElementById("data");
+    let fetchButton = document.getElementById("fetch-button");
+    let weatherReport = document.getElementById("weather-report");
+
+    fetchButton.addEventListener("click", () => {
+      var obj = {
+        CityName: inputData.value,
+      };
+      inputData = "";
+      console.log("valuecleared");
+
+      fetch("/city", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      });
+    });
+
+    // function postData() {
+    //   fetch('/city', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({message: "Hello from Client!"}),
+    //   })
+    //   .then(response => response.text())
+    //   .then(message => {
+    //     console.log('Error', error);
+    //   });
+    //   }
+
+    // function getData() {
+    //   fetch('/city')
+    //   .then(response => response.json())
+    //   .then(data=> {
+    //     console.log("data from server", data);
+    //   })
+    //   .catch(error => {
+    //     console.log('Error', error);
+    //   });
+    // }
+  </script>
 </html>
