@@ -33,7 +33,7 @@ app.post("/city", (req, res) => {
 
 app.get("/city", (req, res) => {
   res.json(globalData.cityData);
-  console.log(globalData.cityData, "Get Requeest");
+  console.log(globalData.cityData, "Get Request");
 });
 // var CITY = cityData.CityName.value;
 // var apiURL2 = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${response.CityNameBE}`;
