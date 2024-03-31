@@ -7,7 +7,7 @@
   <body>
     <input type="text" id="data" />
     <button id="fetch-button">Gimme Weather~</button>
-    <text id="weather-report"></text>
+    <p id="weather-report"></p>
     <!-- <script src="./javascript.js" type="module"></script> -->
   </body>
   <script>
@@ -20,7 +20,7 @@
         CityName: inputData.value,
       };
       // inputData = "";
-      console.log("POSTed");
+      console.log("fetched");
 
       fetch("/city", {
         method: "POST",
@@ -31,7 +31,10 @@
       });
       fetch("/city")
         .then((response) => response.json())
-        .then((users) => console.log(users));
+        .then((data) => {
+          console.log(data);
+        });
+      // weatherReport.textContent =
     });
   </script>
 </html>

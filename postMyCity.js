@@ -22,18 +22,18 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+const globalData = {};
+
 app.post("/city", (req, res) => {
-  console.log(req.body);
-  cityData = {
+  globalData.cityData = {
     CityName: req.body.CityName,
   };
-  console.log(cityData);
+  console.log(globalData.cityData, "Post Request");
 });
+
 app.get("/city", (req, res) => {
-  let users = {
-    myname: "Mert",
-  };
-  res.json(users);
+  res.json(globalData.cityData);
+  console.log(globalData.cityData, "Get Requeest");
 });
 // var CITY = cityData.CityName.value;
 // var apiURL2 = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${response.CityNameBE}`;
