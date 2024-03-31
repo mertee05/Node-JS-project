@@ -19,6 +19,7 @@ app.get("/home", (req, res) => {
 });
 app.post("/city", (req, res) => {
   console.log(req.body);
+  var receivedCityName = req.body.CityName;
 });
 app.get("/city", (req, res) => {
   axios
@@ -26,7 +27,7 @@ app.get("/city", (req, res) => {
     .then((response) => {
       const weatherData = response.data;
       res.send(
-        `Current weather in ${CITY}:\n\n - Temperature: ${weatherData.current.temp_f}°F  `
+        `Current weather in ${receivedCityName}:\n\n - Temperature: ${weatherData.current.temp_f}°F  `
       );
     })
     .catch((error) => {
