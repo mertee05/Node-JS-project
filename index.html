@@ -28,13 +28,19 @@
           "Content-Type": "application/json",
         },
         body: JSON.stringify(obj),
-      });
-      fetch("/city")
+      })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          weatherReport.textContent = data.CityName;
+          weatherReport.textContent = data.location.name;
         });
+
+      // fetch(`/city?name=${inputData.value}&`)
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     console.log(data);
+      //     weatherReport.textContent = data.CityName;
+      //   });
     });
   </script>
 </html>
