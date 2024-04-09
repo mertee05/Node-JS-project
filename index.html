@@ -8,7 +8,6 @@
     <input type="text" id="data" />
     <button id="fetch-button">Gimme Weather~</button>
     <p id="weather-report"></p>
-    <!-- <script src="./javascript.js" type="module"></script> -->
   </body>
   <script>
     let inputData = document.getElementById("data");
@@ -32,15 +31,8 @@
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          weatherReport.textContent = data.location.name;
+          weatherReport.textContent = `Hey There! At ${data.location.localtime}, the weather in ${data.location.name}, ${data.location.region} is ${data.current.temp_f}F with humidity reaching ${data.current.humidity}%. `;
         });
-
-      // fetch(`/city?name=${inputData.value}&`)
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     console.log(data);
-      //     weatherReport.textContent = data.CityName;
-      //   });
     });
   </script>
 </html>
