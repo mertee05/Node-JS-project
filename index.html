@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Temp</title>
+  </head>
+  <body>
+    <input type="text" id="data" />
+    <button id="fetch-button">Gimme Weather~</button>
+    <p id="weather-report"></p>
+  </body>
+  <script>
+    let inputData = document.getElementById("data");
+    let fetchButton = document.getElementById("fetch-button");
+    let weatherReport = document.getElementById("weather-report");
+
+    fetchButton.addEventListener("click", () => {
+      var obj = {
+        CityName: inputData.value,
+      };
+
+      fetch("/city", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          weatherReport.textContent = `Hey There! At ${data.location.localtime}, the weather in ${data.location.name}, 
+          ${data.location.region} is ${data.current.temp_f}F with humidity reaching ${data.current.humidity}%. `;
+        });
+    });
+  </script>
+</html>
